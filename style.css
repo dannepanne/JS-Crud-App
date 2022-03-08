@@ -1,0 +1,21 @@
+
+.nav-link{
+    background-color: grey;
+    border-radius: 3px;
+    border: 1px solid green;
+}
+a{
+    background-color: grey;
+    border-radius: 3px;
+    border: 1px solid green;
+    text-decoration: none;
+    font-size: small;
+    padding: 5px;
+    color: aliceblue;
+}
+body{
+    background-color: lightskyblue;
+}
+li{
+    padding: 10px;
+}
