@@ -34,10 +34,10 @@
               <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Player Name</th>
-                      <th>Jersey</th>
-                      <th>Age</th>
-                      <th>Born</th>
+                      <th scope="col" ><a href="#" id="sortPlayers">Player Name</a> </th>
+                      <th><a href="#" id="sortJersey">Jersey</a></th>
+                      <th><a href="#" id="sortAge">Age</a></th>
+                      <th><a href="#" id="sortCity">City</a></th>
                       <th></th>
                     </tr>
                   </thead>
@@ -58,7 +58,7 @@
                     <input  type="number" class="form-control" id="newJersey" placeholder="Enter jersey number">
                   </div>
                   <div class="form-group">
-                    <label for="newBorn">Born</label>
+                    <label for="newBorn">City</label>
                     <input  type="text" class="form-control" id="newBorn" placeholder="Enter hometown">
                   </div>
                   <div class="form-group">
@@ -81,15 +81,20 @@
                 <input  type="number" class="form-control" id="editJersey">
               </div>
               <div class="form-group">
-                <label for="editBorn">Born</label>
+                <label for="editBorn">City</label>
                 <input  type="text" class="form-control" id="editBorn">
               </div>
               <div class="form-group">
                 <label for="editAge">Age</label>
                 <input  type="number" class="form-control" id="editAge">
               </div>
-  
+
+              <button  id="cancelEditButton" type="submit" class="btn btn-primary">Cancel</button>
+
               <button  id="submitEditButton" type="submit" class="btn btn-primary">Submit</button>
+
+              <button  id="delPlayerButton" type="submit" class="btn btn-primary">Delete player</button>
+
                               
       </section>
   

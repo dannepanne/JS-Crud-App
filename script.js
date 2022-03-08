@@ -13,6 +13,12 @@ const editAge = document.getElementById('editAge')
 const editJersey = document.getElementById('editJersey')
 const editBorn = document.getElementById('editBorn')
 const search = document.getElementById('search')
+const sortPlayers = document.getElementById('sortPlayers')
+const sortJersey = document.getElementById('sortJersey')
+const sortCity = document.getElementById('sortCity')
+const sortAge = document.getElementById('sortAge')
+const cancelEditButton = document.getElementById('cancelEditButton')
+const delPlayerButton = document.getElementById('delPlayerButton')
 
 const baseApi = 'https://hockeyplayers.systementor.se/danneee/player'
 
@@ -26,7 +32,62 @@ class hockeyPlayer{
     }
 }
 
- search.addEventListener("keyup", ()=>{
+sortPlayers.addEventListener("click", ()=>{
+    let sortedPlayers = sortMyPlayers("namn");
+    playerTableBody.innerHTML ='';
+    sortedPlayers.forEach((item)=>{
+        renderTr(item);
+        console.log(item);
+    });
+ })
+    sortJersey.addEventListener("click", ()=>{
+    let sortedJerseys = sortMyPlayers("jersey");
+    playerTableBody.innerHTML ='';
+    sortedJerseys.forEach((item)=>{
+        renderTr(item);
+        console.log(item);
+    });
+ })
+
+ sortAge.addEventListener("click", ()=>{
+    let sortedAge = sortMyPlayers("age");
+    playerTableBody.innerHTML ='';
+    sortedAge.forEach((item)=>{
+        renderTr(item);
+        console.log(item);
+    });
+ })
+ sortCity.addEventListener("click", ()=>{
+    let sortedBorn = sortMyPlayers("born");
+    playerTableBody.innerHTML ='';
+    sortedBorn.forEach((item)=>{
+        renderTr(item);
+        console.log(item);
+    });
+ })
+
+//function för att sortera ALLT
+function sortMyPlayers(typeToSort){   
+   
+    console.log(typeToSort);
+    console.log(typeof(typeToSort));
+    let result = players.sort(function(a,b){       
+        if(a[typeToSort] < b[typeToSort]){
+            return -1;
+        }
+        if(a[typeToSort] > b[typeToSort]){
+            return 1;
+        }
+        return 0;
+    });
+    
+    return result;
+}
+
+
+
+
+search.addEventListener("keyup", ()=>{
 
     const lowerCase = search.value.toLowerCase();
 
@@ -67,6 +128,7 @@ newLink.addEventListener("click",()=>{
     showSection('sectionNew');    
 });
 
+
 function renderTr(player){
     let jsCall = `editPlayer(${player.id})`;
     let template = `<tr>
@@ -80,10 +142,8 @@ function renderTr(player){
     }
 
     function refreshItems(){
-
-        
+        players = [];   
         playerTableBody.innerHTML = '';
-
         fetch(baseApi)
             .then(response=>response.json())
             .then(array=>{              
@@ -111,11 +171,13 @@ function renderTr(player){
         editName.value = editingPlayer.namn;
         editJersey.value = editingPlayer.jersey;
         editAge.value = editingPlayer.age;
-        editBorn.value = editingPlayer.born;  
+        editBorn.value = editingPlayer.born;
         showSection('sectionEdit');    
     }
 
-
+    cancelEditButton.addEventListener("click", ()=>{
+        showSection('sectionList'); 
+    });
     
     submitEditButton.addEventListener("click",()=>{
 
@@ -137,6 +199,7 @@ function renderTr(player){
             // .then(res=>res.json()) -> kan krasha
             // .then(res=>{
                 .then(response=>{
+                
                 refreshItems();
                 showSection('sectionList');    
             });
@@ -145,7 +208,7 @@ function renderTr(player){
     ///fixa skicka upp ny spelare! -done!
     submitNewButton.addEventListener("click",()=>{ 
 
-        const newPlayer = {
+        const newPlayer = { //här kommer nog det automatiskt in ifyllt
             namn: newName.value,
             jersey: newJersey.value,
             age: newAge.value,
@@ -171,11 +234,10 @@ function renderTr(player){
     
                 players.push(play); 
                 renderTr(play);
+                
                 showSection('sectionList');    
             })
     });
-
-
 
     let players = [];    
     refreshItems();
@@ -184,6 +246,6 @@ function renderTr(player){
 showSection('sectionList');
 
 
-//fixa sort
+
 //fixa att new player är en konstant/ligger kvar
-//fixa att den uppdaterar efter att man editerat en spelare
+//fixa ta bort spelare
