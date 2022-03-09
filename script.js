@@ -205,6 +205,10 @@ function renderTr(player){
             });
     });
 
+    delPlayerButton.addEventListener("click", ()=>{
+        alert("Not implemented, yet.");
+    })
+
     ///fixa skicka upp ny spelare! -done!
     submitNewButton.addEventListener("click",()=>{ 
 
