@@ -14,9 +14,8 @@ export function sortMyStuff(typeToSort, MyArr){
             return 0;
         });
 
-        temp=typeToSort;
-        console.log(temp)
-        console.log(arrToSort.isAscending)
+        rememberTypeSorted=typeToSort;
+        
     }
     else{
         result = arrToSort.sort(function(a,b){       
