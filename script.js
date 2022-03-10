@@ -138,7 +138,8 @@ function renderTr(player){
                 });        
             })
         }
-
+    
+        //nedan bör funka men fick inte till det på en gång så lämnar det för nu
     // function refreshItems(){
     //      const res = await fetch(baseApi);
     //      const array = await res.json();
