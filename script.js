@@ -69,10 +69,6 @@ sortPlayers.addEventListener("click", ()=>{
  })
 
 
-
-
-
-
 search.addEventListener("keyup", ()=>{
 
     const lowerCase = search.value.toLowerCase();
@@ -236,7 +232,7 @@ function renderTr(player){
             })
     });
 
-    let players = [];    
+    let players = [];
     refreshItems();
     console.log(players);
     
