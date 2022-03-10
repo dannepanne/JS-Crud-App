@@ -1,4 +1,4 @@
-import { sortMyPlayers } from "./data/MyModule.js"
+import { sortMyStuff } from "./data/MyModule.js"
 const sectionList = document.getElementById('sectionList')
 const sectionNew = document.getElementById('sectionNew')
 const sectionEdit = document.getElementById('sectionEdit')
@@ -35,7 +35,7 @@ class hockeyPlayer{
 }
 
 sortPlayers.addEventListener("click", ()=>{
-    let sortedPlayers = sortMyPlayers("namn", players);
+    let sortedPlayers = sortMyStuff("namn", players);
     playerTableBody.innerHTML ='';
     sortedPlayers.forEach((item)=>{
         renderTr(item);
@@ -43,7 +43,7 @@ sortPlayers.addEventListener("click", ()=>{
     });
  })
     sortJersey.addEventListener("click", ()=>{
-    let sortedJerseys = sortMyPlayers("jersey", players);
+    let sortedJerseys = sortMyStuff("jersey", players);
     playerTableBody.innerHTML ='';
     sortedJerseys.forEach((item)=>{
         renderTr(item);
@@ -52,7 +52,7 @@ sortPlayers.addEventListener("click", ()=>{
  })
 
  sortAge.addEventListener("click", ()=>{
-    let sortedAge = sortMyPlayers("age", players);
+    let sortedAge = sortMyStuff("age", players);
     playerTableBody.innerHTML ='';
     sortedAge.forEach((item)=>{
         renderTr(item);
@@ -60,7 +60,7 @@ sortPlayers.addEventListener("click", ()=>{
     });
  })
  sortCity.addEventListener("click", ()=>{
-    let sortedBorn = sortMyPlayers("born", players);
+    let sortedBorn = sortMyStuff("born", players);
     playerTableBody.innerHTML ='';
     sortedBorn.forEach((item)=>{
         renderTr(item);
