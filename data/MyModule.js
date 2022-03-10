@@ -1,5 +1,5 @@
-//function för att sortera ALLT, endast högt>lågt iplementerat. Switch sats för att byta ej gjord. 
-//Måste skicka in players array för att modulen inte kommer åt denna annars
+//function för att sortera ALLT, 
+//Måste tydligen skicka in array för att modulen inte kommer åt denna annars
 export function sortMyStuff(typeToSort, MyArr){   
     const arrToSort = MyArr;
     let result;
