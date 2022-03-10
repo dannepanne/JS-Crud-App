@@ -1,3 +1,4 @@
+import { sortMyPlayers } from "./data/MyModule.js"
 const sectionList = document.getElementById('sectionList')
 const sectionNew = document.getElementById('sectionNew')
 const sectionEdit = document.getElementById('sectionEdit')
@@ -5,7 +6,7 @@ const playerTableBody = document.getElementById('playerTableBody')
 const submitNewButton = document.getElementById('submitNewButton')
 const submitEditButton = document.getElementById('submitEditButton')
 const newName =  document.getElementById('newName')
-const newCity = document.getElementById('newBorn')
+const newBorn = document.getElementById('newBorn')
 const newJersey = document.getElementById('newJersey')
 const newAge = document.getElementById('newAge')
 const editName =  document.getElementById('editName')
@@ -19,6 +20,7 @@ const sortCity = document.getElementById('sortCity')
 const sortAge = document.getElementById('sortAge')
 const cancelEditButton = document.getElementById('cancelEditButton')
 const delPlayerButton = document.getElementById('delPlayerButton')
+const cancelNewButton = document.getElementById('cancelNewButton')
 
 const baseApi = 'https://hockeyplayers.systementor.se/danneee/player'
 
@@ -33,7 +35,7 @@ class hockeyPlayer{
 }
 
 sortPlayers.addEventListener("click", ()=>{
-    let sortedPlayers = sortMyPlayers("namn");
+    let sortedPlayers = sortMyPlayers("namn", players);
     playerTableBody.innerHTML ='';
     sortedPlayers.forEach((item)=>{
         renderTr(item);
@@ -41,7 +43,7 @@ sortPlayers.addEventListener("click", ()=>{
     });
  })
     sortJersey.addEventListener("click", ()=>{
-    let sortedJerseys = sortMyPlayers("jersey");
+    let sortedJerseys = sortMyPlayers("jersey", players);
     playerTableBody.innerHTML ='';
     sortedJerseys.forEach((item)=>{
         renderTr(item);
@@ -50,7 +52,7 @@ sortPlayers.addEventListener("click", ()=>{
  })
 
  sortAge.addEventListener("click", ()=>{
-    let sortedAge = sortMyPlayers("age");
+    let sortedAge = sortMyPlayers("age", players);
     playerTableBody.innerHTML ='';
     sortedAge.forEach((item)=>{
         renderTr(item);
@@ -58,7 +60,7 @@ sortPlayers.addEventListener("click", ()=>{
     });
  })
  sortCity.addEventListener("click", ()=>{
-    let sortedBorn = sortMyPlayers("born");
+    let sortedBorn = sortMyPlayers("born", players);
     playerTableBody.innerHTML ='';
     sortedBorn.forEach((item)=>{
         renderTr(item);
@@ -66,23 +68,7 @@ sortPlayers.addEventListener("click", ()=>{
     });
  })
 
-//function för att sortera ALLT
-function sortMyPlayers(typeToSort){   
-   
-    console.log(typeToSort);
-    console.log(typeof(typeToSort));
-    let result = players.sort(function(a,b){       
-        if(a[typeToSort] < b[typeToSort]){
-            return -1;
-        }
-        if(a[typeToSort] > b[typeToSort]){
-            return 1;
-        }
-        return 0;
-    });
-    
-    return result;
-}
+
 
 
 
@@ -148,7 +134,7 @@ function renderTr(player){
             .then(response=>response.json())
             .then(array=>{              
                 array.forEach(play=>{
-                    p = new hockeyPlayer(play.id, play.namn, play.jersey, play.age, play.born)
+                    let p = new hockeyPlayer(play.id, play.namn, play.jersey, play.age, play.born)
                     players.push(p)
                 });   
                     players.forEach( (item) => {
@@ -166,6 +152,8 @@ function renderTr(player){
 
     let editingPlayer = null;
 
+    window.editPlayer = editPlayer;
+
     function editPlayer(id){
         editingPlayer = players.find((item)=>item.id == id)
         editName.value = editingPlayer.namn;
@@ -174,6 +162,11 @@ function renderTr(player){
         editBorn.value = editingPlayer.born;
         showSection('sectionEdit');    
     }
+    
+
+    cancelNewButton.addEventListener("click", ()=>{
+        showSection('sectionList'); 
+    });
 
     cancelEditButton.addEventListener("click", ()=>{
         showSection('sectionList'); 
@@ -251,5 +244,4 @@ showSection('sectionList');
 
 
 
-//fixa att new player är en konstant/ligger kvar
-//fixa ta bort spelare
+
