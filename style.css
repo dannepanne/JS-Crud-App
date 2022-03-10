@@ -3,6 +3,8 @@
     background-color: grey;
     border-radius: 3px;
     border: 1px solid green;
+    font-weight: bold;
+    font-size: large;
 }
 a{
     background-color: grey;
@@ -14,8 +16,18 @@ a{
     color: aliceblue;
 }
 body{
-    background-color: lightskyblue;
+    background-image: url("/images/output-onlinepngtools.png");
+    background-size: cover;
 }
 li{
+    padding: 10px;
+}
+section{
+    font-weight: bold;
+}
+button{
+    font-weight: bold;
+}
+#search{
     padding: 10px;
 }
