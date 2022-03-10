@@ -195,13 +195,13 @@ function renderTr(player){
     });
 
     delPlayerButton.addEventListener("click", ()=>{
-        alert("Not implemented, yet.");
+        alert("Not implemented in API?");
     })
 
     ///fixa skicka upp ny spelare! -done!
     submitNewButton.addEventListener("click",()=>{ 
 
-        const newPlayer = { //här kommer nog det automatiskt in ifyllt
+        const newPlayer = { 
             namn: newName.value,
             jersey: newJersey.value,
             age: newAge.value,
